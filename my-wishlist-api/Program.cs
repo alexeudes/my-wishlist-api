@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using my_wishlist_api.Context;
+using my_wishlist_api.Repositories;
+using my_wishlist_api.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,9 @@ builder.Services.AddSwaggerGen(c =>
 var connectionString = builder.Configuration.GetConnectionString("SqliteConnectionString");
 builder.Services.AddDbContext<MyWishlistDbContext>(options =>
     options.UseSqlite(connectionString));
+
+builder.Services.AddTransient<IWishlistRepository, WishlistRepository>();
+builder.Services.AddTransient<IItemWishlistRepository, ItemWishlistRepository>();
 
 var app = builder.Build();
 

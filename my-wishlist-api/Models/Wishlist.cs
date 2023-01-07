@@ -9,12 +9,12 @@ namespace my_wishlist_api.Models
 		}
 
 		public int ID { get; set; }
-		public string Title { get; set; }
-		public string? Description { get; set; }
-        public string? SourceOfBuy { get; set; }
-		public DateTime DateOfDesire { get; set; } = DateTime.Now;
-		public decimal Price { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; } = string.Empty;
+		public DateTime CreatedAt { get; set; } = DateTime.Now;
 		public byte Photo { get; set; }
-		public string Priority { get; set; }
+
+		public List<ItemWishlist> itensWishlist { get; set; } = new List<ItemWishlist>();
+		public User user { get; set; }
 	}
 }
